@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Hospital2.Models;
+
+namespace Hospital2.Pages.OncallReq
+{
+    public class IndexModel : PageModel
+    {
+        private readonly Hospital2.Models.Hospital2Context _context;
+
+        public IndexModel(Hospital2.Models.Hospital2Context context)
+        {
+            _context = context;
+        }
+
+        public IList<OncallRequests> OncallRequests { get;set; } = default!;
+
+        public async Task OnGetAsync()
+        {
+            if (_context.OncallRequests != null)
+            {
+                OncallRequests = await _context.OncallRequests
+                .Include(o => o.Department)
+                .Include(o => o.LeaveStatus)
+                .Include(o => o.UserDetail).ToListAsync();
+            }
+        }
+    }
+}

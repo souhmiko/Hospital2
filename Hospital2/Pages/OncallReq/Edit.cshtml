@@ -1,0 +1,70 @@
+﻿@page
+@model Hospital2.Pages.OncallReq.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>OncallRequests</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OncallRequests.Id" />
+            <div class="form-group">
+                <label asp-for="OncallRequests.UserDetailId" class="control-label"></label>
+                <select asp-for="OncallRequests.UserDetailId" class="form-control" asp-items="ViewBag.UserDetailId"></select>
+                <span asp-validation-for="OncallRequests.UserDetailId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OncallRequests.DepartmentId" class="control-label"></label>
+                <select asp-for="OncallRequests.DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+                <span asp-validation-for="OncallRequests.DepartmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OncallRequests.DateTimeOnCall" class="control-label"></label>
+                <input asp-for="OncallRequests.DateTimeOnCall" class="form-control" />
+                <span asp-validation-for="OncallRequests.DateTimeOnCall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OncallRequests.ApprovedByUserDetailId" class="control-label"></label>
+                <input asp-for="OncallRequests.ApprovedByUserDetailId" class="form-control" />
+                <span asp-validation-for="OncallRequests.ApprovedByUserDetailId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OncallRequests.DateApproved" class="control-label"></label>
+                <input asp-for="OncallRequests.DateApproved" class="form-control" />
+                <span asp-validation-for="OncallRequests.DateApproved" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OncallRequests.RejectedByUserDetailId" class="control-label"></label>
+                <input asp-for="OncallRequests.RejectedByUserDetailId" class="form-control" />
+                <span asp-validation-for="OncallRequests.RejectedByUserDetailId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OncallRequests.DateRejected" class="control-label"></label>
+                <input asp-for="OncallRequests.DateRejected" class="form-control" />
+                <span asp-validation-for="OncallRequests.DateRejected" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OncallRequests.LeaveStatusId" class="control-label"></label>
+                <select asp-for="OncallRequests.LeaveStatusId" class="form-control" asp-items="ViewBag.LeaveStatusId"></select>
+                <span asp-validation-for="OncallRequests.LeaveStatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

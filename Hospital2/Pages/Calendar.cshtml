@@ -1,0 +1,194 @@
+﻿@page
+@model Hospital2.Pages.CalendarModel
+@{
+}
+
+
+
+<div class="content">
+
+    <!-- Start Content-->
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <h4 class="page-title">Calendar</h4>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth">&lt;</button>
+                <h2 id="currentMonthYear"></h2>
+                <button id="nextMonth">&gt;</button>
+            </div>
+            <table id="calendarTable">
+                <!-- Calendar content will be generated dynamically using JavaScript -->
+            </table>
+        </div>
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+
+
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .calendar-container {
+        max-width: 5500px;
+        margin: 50px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    #calendarTable {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        #calendarTable th,
+        #calendarTable td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        #calendarTable th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #calendarTable td {
+            background-color: #fff;
+            transition: background-color 0.3s;
+        }
+
+            #calendarTable td:hover {
+                background-color: #f9f9f9;
+            }
+
+    #currentMonthYear {
+        margin: 0;
+        font-size: 18px;
+        color: #333;
+    }
+
+    #prevMonth,
+    #nextMonth {
+        background-color: #38414a;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+        #prevMonth:hover,
+        #nextMonth:hover {
+            background-color: #45a049;
+        }
+
+        #prevMonth:disabled,
+        #nextMonth:disabled {
+            background-color: #d3d3d3;
+            color: #777;
+            cursor: not-allowed;
+        }
+
+    #calendarTable td.today {
+        background-color: #138D75;
+        color: #fff;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        function generateCalendar(month, year) {
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const daysInMonth = lastDay.getDate();
+
+            document.getElementById('currentMonthYear').innerHTML = `${getMonthName(month)} ${year}`;
+
+            let calendarTable = '<tr>';
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+            for (let i = 0; i < dayNames.length; i++) {
+                calendarTable += `<th>${dayNames[i]}</th>`;
+            }
+            calendarTable += '</tr>';
+
+            let dayCounter = 1;
+
+            for (let i = 0; i < 6; i++) {
+                calendarTable += '<tr>';
+
+                for (let j = 0; j < 7; j++) {
+                    if ((i === 0 && j < firstDay.getDay()) || dayCounter > daysInMonth) {
+                        calendarTable += '<td></td>';
+                    } else {
+                        const isToday = dayCounter === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear();
+                        calendarTable += `<td class="${isToday ? 'today' : ''}">${dayCounter}</td>`;
+                        dayCounter++;
+                    }
+                }
+
+                calendarTable += '</tr>';
+            }
+
+            document.getElementById('calendarTable').innerHTML = calendarTable;
+        }
+
+        function getMonthName(month) {
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            return monthNames[month];
+        }
+
+        generateCalendar(currentMonth, currentYear);
+
+        document.getElementById('prevMonth').addEventListener('click', function () {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', function () {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+    });
+</script>

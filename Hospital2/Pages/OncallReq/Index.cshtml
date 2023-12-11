@@ -1,0 +1,64 @@
+﻿@page
+@model Hospital2.Pages.OncallReq.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<h2>On-Call Requests</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OncallRequests[0].UserDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OncallRequests[0].Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OncallRequests[0].DateTimeOnCall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OncallRequests[0].LeaveStatus)
+            </th>
+            <th>
+                Action
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OncallRequests) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDetail.AspNetUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeOnCall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveStatus.Id)
+            </td>
+            <td>
+                
+            </td>
+            
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

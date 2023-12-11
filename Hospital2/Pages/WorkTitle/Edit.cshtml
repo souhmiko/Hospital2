@@ -1,0 +1,39 @@
+﻿@page
+@model Hospital2.Pages.WorkTitle.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+
+<h2>Edit</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WorkTitles.Id" />
+            <div class="form-group">
+                <label asp-for="WorkTitles.WorkTitleName" class="control-label"></label>
+                <input asp-for="WorkTitles.WorkTitleName" class="form-control" />
+                <span asp-validation-for="WorkTitles.WorkTitleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" style="margin-top:10px;" />
+                <a asp-page="./Index" class="btn btn-secondary" style="margin-top:10px; margin-left: 10px;">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
