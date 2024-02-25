@@ -1,0 +1,69 @@
+﻿@page
+@model Hospital2.Pages.Employee.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+</style>
+
+
+<h2>Employees</h2>
+
+<p>
+    <a asp-page="EmployCreate" class="create-button"><i class="fa fa-plus icon-button" aria-hidden="true"></i>New Employee</a>
+
+    <!-- Enhanced Export to PDF Button -->
+    @* <form method="post" asp-page-handler="ExportToPdf" class="d-inline">
+        <button type="submit" class="btn btn-info ml-2">Export to PDF <i class="fas fa-file-pdf"></i></button>
+    </form> *@
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDetails[0].AspNetUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDetails[0].Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDetails[0].WorkTitle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.UserDetails) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkTitle.Id)
+            </td>
+            <td>
+                <a asp-page="./EmployEdit" asp-route-id="@item.Id" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <a asp-page="./EmployDetails" asp-route-id="@item.Id" class="btn btn-info">
+                    <i class="fas fa-info-circle"></i> Details
+                </a>
+                <a asp-page="./EmployDelete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

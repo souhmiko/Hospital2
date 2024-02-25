@@ -1,0 +1,121 @@
+﻿@page
+@model Hospital2.Pages.OncallFormModel
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/Hospital2.styles.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<!-- App favicon -->
+<link rel="shortcut icon" href="~/assets/images/favicon.ico">
+
+<!-- Plugins css -->
+<link href="~/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+
+<!-- Theme Config Js -->
+<script src="~/assets/js/head.js"></script>
+
+<!-- Bootstrap css -->
+<link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+<!-- App css -->
+<link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Icons css -->
+<link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    
+<style>
+    .oncall-request h2 {
+        font-size: 26px;
+    }
+
+    .form-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .center-bottom {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    select, input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+        
+</style>
+
+
+<div class="form-container">
+        <header class="text-center mb-2">
+            <section class="oncall-request">
+                <h2 class="display-1 h1">On-Call Request Form</h2>
+            </section>
+        </header>
+
+    <!--form-->
+
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department</label>
+            <select id="department">
+                <option value="">Select</option>
+                <option value="dept1">Department 1</option>
+                <option value="dept2">Department 2</option>
+                <!-- Add other departments as needed -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <div id="timeFields" class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="startTime">Start Time</label>
+                    <input type="time" id="startTime" required>
+                </div>
+
+                <div class="col">
+                    <label for="endTime">End Time</label>
+                    <input type="time" id="endTime" required>
+                </div>
+            </div>
+        </div>
+
+        <!--Submit Button-->
+        <div class="row mb-3">
+            <div class="col center-bottom">
+                <!-- Add Bootstrap styling classes to the button -->
+                <button type="submit" class="btn btn-primary w-50 shadow-sm">Submit</button>
+            </div>
+        </div>
+</div>

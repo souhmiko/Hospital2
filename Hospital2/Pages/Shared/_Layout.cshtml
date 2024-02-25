@@ -32,32 +32,6 @@
 
 </head>
 <body>
-    @* <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Hospital2</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Department/Index">Department</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header> *@
-
-
     <!-- Begin page -->
     <div id="wrapper">
 
@@ -125,7 +99,7 @@
                     <li class="menu-title">Navigation</li>
 
                     <li class="menu-item">
-                        <a href="~/Home/Index" class="menu-link">
+                        <a href="/Index" class="menu-link">
                             <span class="menu-icon"><i class="bi bi-cast"></i></span>
                             <span class="menu-text"> Dashboards </span>
                         </a>
@@ -144,16 +118,30 @@
                         <div class="collapse" id="menuCrm">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="~/LeaveReq/Index" class="menu-link">
+                                    <a href="~/LeaveReq/LeaveIndex" class="menu-link">
                                         <span class="menu-text">Leave Requests</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="~/OncallReq/Index" class="menu-link">
+                                    <a href="~/OncallReq/OncallIndex" class="menu-link">
                                         <span class="menu-text">On-call Requests</span>
                                     </a>
                                 </li>
-
+                                @* <li class="menu-item">
+                                    <a href="~/LeavReqForm" class="menu-link">
+                                        <span class="menu-text">leave form</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="~/OncallForm" class="menu-link">
+                                        <span class="menu-text">oncall form</span>
+                                    </a>
+                                </li> *@
+                                <li class="menu-item">
+                                    <a href="~/UserDash" class="menu-link">
+                                        <span class="menu-text">User</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -169,17 +157,17 @@
                         <div class="collapse" id="menuEcommerce">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="~/Employee/Index" class="menu-link">
+                                    <a href="~/Employee/EmployIndex" class="menu-link">
                                         <span class="menu-text">Employees</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="~/Department/Index" class="menu-link">
+                                    <a href="~/Department/DepartIndex" class="menu-link">
                                         <span class="menu-text">Departments</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="~/WorkTitle/Index" class="menu-link">
+                                    <a href="~/WorkTitle/WorkIndex" class="menu-link">
                                         <span class="menu-text">Work Title</span>
                                     </a>
                                 </li>
@@ -459,8 +447,12 @@
                             </div>
                         </li>
 
+
+                        <li><partial name="_LoginPartial" /></li>
+
+
                         <!-- User Dropdown -->
-                        <li class="dropdown">
+                        @* <li class="dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <img src="~/assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
                                 <span class="ms-1 d-none d-md-inline-block">
@@ -498,9 +490,10 @@
                                     <i class="fe-log-out"></i>
                                     <span>Logout</span>
                                 </a>
-
+                                
                             </div>
-                        </li>
+
+                        </li> *@
 
                         <!-- Right Bar offcanvas button (Theme Customization Panel) -->
                         <li>
@@ -510,7 +503,7 @@
                         </li>
                     </ul>
                 </div>
-                @* <partial name="_LoginPartial" /> *@
+                
             </div>
             <!-- ========== Topbar End ========== -->
 
@@ -520,7 +513,7 @@
                     @RenderBody()
                 </main>
             </div>
-
+            
 
         </div>
 

@@ -1,0 +1,75 @@
+﻿@page
+@model Hospital2.Pages.Employee.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .row {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            font-size: 16px;
+        }
+
+    input[type=submit] {
+        cursor: pointer;
+        float: left;
+    }
+
+</style>
+
+<h2>Edit</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserDetails.Id" />
+            <div class="form-group">
+                <label asp-for="UserDetails.AspNetUserId" class="control-label"></label>
+                <input asp-for="UserDetails.AspNetUserId" class="form-control" />
+                <span asp-validation-for="UserDetails.AspNetUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserDetails.DepartmentId" class="control-label"></label>
+                <select asp-for="UserDetails.DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="UserDetails.DepartmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserDetails.WorkTitleId" class="control-label"></label>
+                <select asp-for="UserDetails.WorkTitleId" class="form-control" asp-items="ViewBag.WorkTitleId">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="UserDetails.WorkTitleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./EmployIndex" class="btn btn-secondary" style="float:right;">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

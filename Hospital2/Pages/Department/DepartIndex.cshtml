@@ -1,0 +1,53 @@
+﻿@page
+@model Hospital2.Pages.test.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+
+<h2>Department</h2>
+
+<p>
+    <a asp-page="DepartCreate" class="create-button"><i class="fa fa-plus icon-button" aria-hidden="true"></i>New Department</a>
+
+    <!-- Enhanced Export to PDF Button -->
+    <form method="post" asp-page-handler="ExportToPdf" class="d-inline">
+        <button type="submit" class="btn btn-info ml-2">Export to PDF <i class="fas fa-file-pdf"></i></button>
+    </form>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Departments[0].DepartmentName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Departments) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            <td>
+                <a asp-page="./DepartEdit" asp-route-id="@item.Id" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Edit
+                </a> 
+                <a asp-page="./DepartDelete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

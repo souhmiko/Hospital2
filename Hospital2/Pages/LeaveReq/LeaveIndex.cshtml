@@ -1,0 +1,91 @@
+﻿@page
+@model Hospital2.Pages.LeaveReq.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+
+<h2>Leave Requests</h2>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Employee
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].EndDate)
+            </th>
+            <th>
+                Leave Type
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].Reason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].Days)
+            </th>
+            <th>
+                Document
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Action
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LeaveRequests) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDetail.AspNetUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveType.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Days)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDocument)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveStatus.Id)
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                <a asp-page="./LeaveDetails" asp-route-id="@item.Id" class="btn btn-info">
+                    <i class="fas fa-info-circle"></i> Details
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

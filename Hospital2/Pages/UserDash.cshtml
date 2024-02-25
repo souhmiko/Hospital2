@@ -1,0 +1,113 @@
+﻿@page
+@model Hospital2.Pages.UserDashModel
+@{
+    Layout = null;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    <style>
+    body {
+        padding-top: 56px;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .header {
+        background: linear-gradient(to right, #333, #555);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .content {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .grid-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #333;
+    }
+
+        /* Style for the icons within grid items */
+        .grid-item i {
+            display: block;
+            margin: 0 auto 10px; /* Adjust margin as needed */
+            color: #3498db; /* Adjust the color of the icons */
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid-item h4 {
+            margin-top: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h2>User Dashboard</h2>
+            <!-- Add user information or any other header content -->
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container content">
+        
+        <!-- Grid Layout -->
+        <div class="grid-container">
+            <!-- Example Grid Items -->
+            <a href="/LeavReqForm" class="grid-item">
+                <i class="fa-solid fa-file fa-2x"></i>
+                <h4>Leave Request</h4>
+            </a>
+            <a href="/OncallForm" class="grid-item">
+                <i class="fa-solid fa-calendar-day fa-2x"></i>
+                <h4>On-Call Request</h4>
+            </a>
+            <a href="/Calendar" class="grid-item">
+                <i class="fas fa-calendar fa-2x"></i>
+                <h4>Calendar</h4>
+            </a>
+            <a href="page3.html" class="grid-item">
+                <i class="fa-solid fa-address-card fa-2x"></i>
+                <h4>Profile</h4>
+            </a>
+            <a href="page3.html" class="grid-item">
+                <i class="fa-solid fa-gear fa-2x"></i>
+                <h4>Settings</h4>
+            </a>
+            <!-- Add more grid items as needed -->
+        </div>
+    </div>

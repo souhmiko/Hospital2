@@ -2,15 +2,13 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hospital2.Models;
 
-public partial class Hospital2Context : IdentityDbContext<IdentityUser>
+public partial class HospitalLeaveContext : DbContext
 {
-    public Hospital2Context(DbContextOptions<Hospital2Context> options)
+    public HospitalLeaveContext(DbContextOptions<HospitalLeaveContext> options)
         : base(options)
     {
     }
@@ -37,13 +35,6 @@ public partial class Hospital2Context : IdentityDbContext<IdentityUser>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
-        {
-            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey, e.UserId });
-        });
-
         modelBuilder.Entity<LeaveConditions>(entity =>
         {
             entity.Property(e => e.MaxAmountofStaffAllowed).HasMaxLength(450);

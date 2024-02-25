@@ -2,17 +2,34 @@
 using Hospital2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("hospital2db") ?? throw new InvalidOperationException("Connection string 'Hospital2ContextPartialConnection' not found.");
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+
 builder.Services.AddSingleton(builder.Configuration);
 builder.Services.AddDbContext<Hospital2Context>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("hospital2db")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Hospital2Context>();
+// Add services to the container.
+builder.Services.AddRazorPages();
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.Password.RequiredLength = 6;
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<Hospital2Context>()
+    .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    //Cookie settings
+    options.ExpireTimeSpan = TimeSpan.FromDays(90);
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
 
 var app = builder.Build();
 

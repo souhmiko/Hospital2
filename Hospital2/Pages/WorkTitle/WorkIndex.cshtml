@@ -1,0 +1,46 @@
+﻿@page
+@model Hospital2.Pages.WorkTitle.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+
+<h2>Work Title List</h2>
+
+<p>
+    <a asp-page="WorkCreate" class="create-button"><i class="fa fa-plus icon-button" aria-hidden="true"></i>Create</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkTitles[0].WorkTitleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.WorkTitles) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkTitleName)
+            </td>
+            <td>
+                <a asp-page="./WorkEdit" asp-route-id="@item.Id" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <a asp-page="./WorkDelete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
